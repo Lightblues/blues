@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         arXiv Tools
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.1.1
 // @description  对于arXiv的文章, 生成可以拖动的透明按钮, 点击跳转到 papers.cool
 // @author       Easonshi
 // @match        *://arxiv.org/*
