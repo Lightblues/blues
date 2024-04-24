@@ -6,6 +6,9 @@
 // @author       Easonshi
 // @match        *://arxiv.org/*
 // @grant        none
+// @homepageURL  https://github.com/Lightblues/blues
+// @downloadURL  https://raw.githubusercontent.com/Lightblues/blues/main/userscripts/arxiv/arxiv.js
+// @updateURL    https://raw.githubusercontent.com/Lightblues/blues/main/userscripts/arxiv/arxiv.js
 // ==/UserScript==
 
 (function() {
