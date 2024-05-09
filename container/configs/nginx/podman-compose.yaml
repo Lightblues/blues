@@ -1,0 +1,24 @@
+# version: '3'
+# services:
+#   nginx:
+#     image: nginx:latest
+#     ports:
+#       - "9801:80"
+#     volumes:
+#       - ./data/nginx/data/html:/usr/share/nginx/html:Z
+#       - ./data/minio/data:/mnt/minio/data:Z
+#     restart: unless-stopped
+#     name: nginx
+
+version: '3'
+services:
+  web:
+    image: nginx
+    volumes:
+      - ../../mnt/nginx/templates:/etc/nginx/templates
+      - ../../mnt/nginx/config:/etc/nginx/conf.d
+    ports:
+      - "8080:80"
+    environment:
+      - NGINX_HOST=foobar.com
+      - NGINX_PORT=80

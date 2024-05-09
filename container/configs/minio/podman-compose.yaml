@@ -1,0 +1,31 @@
+# =========================================================
+# 启动: podman-compose up -d
+# 重启: podman-compose down
+# 访问: http://127.0.0.1:9001/buckets
+
+# podman run \
+#     -p 9000:9000 \
+#     -p 9001:9001 \
+#     -v ./mnt/minio/data:/data \
+#     -e "MINIO_ROOT_USER=eason" \
+#     -e "MINIO_ROOT_PASSWORD=s1928y6473c" \
+#     --name minio \
+#     quay.io/minio/minio server /data --console-address ":9001"
+
+version: '3'
+services:
+  minio:
+    image: quay.io/minio/minio
+    name: minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - ../../mnt/minio/data:/data
+    environment:
+      - MINIO_ROOT_USER=eason
+      - MINIO_ROOT_PASSWORD=s1928y6473c
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+
+

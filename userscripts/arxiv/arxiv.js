@@ -11,6 +11,10 @@
 // @updateURL    https://raw.githubusercontent.com/Lightblues/blues/main/userscripts/arxiv/arxiv.js
 // ==/UserScript==
 
+/* 
+1. 做成拖动, 悬浮到边缘? 
+
+*/
 (function() {
     'use strict';
 
