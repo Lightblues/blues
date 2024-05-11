@@ -4,16 +4,6 @@
 # 停止: podman-compose down
 # 访问: http://127.0.0.1:9001/buckets
 
-# podman run \
-#     -p 9000:9000 \
-#     -p 9001:9001 \
-#     -v ./mnt/minio/data:/data \
-#     -e "MINIO_ROOT_USER=eason" \
-#     -e "MINIO_ROOT_PASSWORD=s1928y6473c" \
-#     --name minio \
-#     quay.io/minio/minio server /data --console-address ":9001"
-
-
 version: '3'
 services:
   # minio:

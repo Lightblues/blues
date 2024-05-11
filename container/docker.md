@@ -1,8 +1,9 @@
 ## services
-- clash: http://106.54.23.131:9999/ui/
-    crash
-- chatgpt-next-web: http://106.54.23.131:9302
-    o-ever-youthful
+[see tmp/index.md]
+
+
+
+
 
 ## podman
 另见 [help]
