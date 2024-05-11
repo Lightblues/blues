@@ -1,3 +1,9 @@
+## services
+- clash: http://106.54.23.131:9999/ui/
+    crash
+- chatgpt-next-web: http://106.54.23.131:9302
+    o-ever-youthful
+
 ## podman
 另见 [help]
 
@@ -8,6 +14,11 @@
 ## clash
 - github: https://github.com/juewuy/ShellCrash
 
+
+## nginx
+
+
+
 ## 所运行的容器
 
 ### minio
@@ -17,9 +28,9 @@
 如何用nginx代理图片? https://www.naeco.top/2020/08/11/private-oss-for-image/ 之类介绍的好像不行
 另见 https://juejin.cn/post/7260786849131003962
 
-### nginx
+### nginx? 
 
 
 ### chatgpt-next-web
-
+- github: https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web
 

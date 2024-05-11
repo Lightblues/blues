@@ -1,8 +1,9 @@
 # =========================================================
-# 启动: podman-compose up -d
-# 重启: podman-compose restart    # 在不指定name的时候才能使用!
-# 停止: podman-compose down
-# 访问: http://127.0.0.1:9002
+# 启动: docker-compose up -d
+# 重启: docker-compose restart    # 在不指定name的时候才能使用!
+# 停止: docker-compose down
+# 访问: http://127.0.0.1:9302
+# see https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web/blob/main/docker-compose.yml
 
 
 version: '3'
@@ -14,7 +15,8 @@ services:
       - "9302:3000"
     # network_mode: host
     environment:
-      - OPENAI_API_KEY=sk-proj-LiZwIgiMzryq4OzsmcYtT3BlbkFJoCl2rUUR7TWbGc8SPNzu
+      # https://platform.openai.com/api-keys | NextWeb
+      - OPENAI_API_KEY=sk-proj-e7MVow1vvdhH4U0OK36XT3BlbkFJbAzbhvDo9ydD85rngVpi
       - CODE=o-ever-youthful
       # - PROXY_URL=http://localhost:7890
       # - PROXY_URL=http://host.docker.internal:7890

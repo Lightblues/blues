@@ -2,7 +2,8 @@
 # 启动: podman-compose up -d
 # 重启: podman-compose restart    # 在不指定name的时候才能使用!
 # 停止: podman-compose down
-# 访问: http://127.0.0.1:9002
+# 访问: http://127.0.0.1:9302
+# https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web/blob/main/docker-compose.yml
 
 version: '3'
 services:

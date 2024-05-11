@@ -2,13 +2,13 @@
 #                       install 
 # https://podman.io/docs/installation
 
-brew install podman
+sudo apt-get -y install podman  # ubuntu
+brew install podman             # mac
 
-podman machine init
-podman machine start
+# podman machine init
+# podman machine start
 
 podman info
-
 
 # =================================================
 #                       basic 
@@ -28,3 +28,7 @@ podman top basic_httpd
 
 podman stop <container_id>
 podman stop <container_id>
+
+# =================================================
+#                       podman-compose 
+pip3 install podman-compose
