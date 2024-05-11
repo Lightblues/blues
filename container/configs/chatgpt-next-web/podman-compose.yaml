@@ -17,7 +17,7 @@ services:
       # 服务的密码
       - CODE=o-ever-youthful
       # OpenAI的API Key
-      - OPENAI_API_KEY=sk-proj-LiZwIgiMzryq4OzsmcYtT3BlbkFJoCl2rUUR7TWbGc8SPNzu
+      - OPENAI_API_KEY=${OPENAI_API_KEY_1}
       - BASE_URL=https://api.openai.com/
       # NOTE: 为了让容器内的应用能够访问到宿主机的网络，需要设置代理
       - HTTP_PROXY="http://host.docker.internal:7890"

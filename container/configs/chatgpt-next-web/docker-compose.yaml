@@ -16,7 +16,7 @@ services:
     # network_mode: host
     environment:
       # https://platform.openai.com/api-keys | NextWeb
-      - OPENAI_API_KEY=sk-proj-e7MVow1vvdhH4U0OK36XT3BlbkFJbAzbhvDo9ydD85rngVpi
+      - OPENAI_API_KEY=${OPENAI_API_KEY_1}
       - CODE=o-ever-youthful
       # - PROXY_URL=http://localhost:7890
       # - PROXY_URL=http://host.docker.internal:7890
