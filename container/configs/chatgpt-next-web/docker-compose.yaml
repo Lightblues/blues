@@ -1,0 +1,28 @@
+# =========================================================
+# 启动: podman-compose up -d
+# 重启: podman-compose restart    # 在不指定name的时候才能使用!
+# 停止: podman-compose down
+# 访问: http://127.0.0.1:9002
+
+
+version: '3'
+services:
+  chatgpt-next-web:
+    container_name: chatgpt-next-web
+    image: yidadaa/chatgpt-next-web
+    ports:
+      - "9302:3000"
+    # network_mode: host
+    environment:
+      - OPENAI_API_KEY=sk-proj-LiZwIgiMzryq4OzsmcYtT3BlbkFJoCl2rUUR7TWbGc8SPNzu
+      - CODE=o-ever-youthful
+      # - PROXY_URL=http://localhost:7890
+      # - PROXY_URL=http://host.docker.internal:7890
+      # - PROXY_URL=http://10.89.4.1:7890
+      # - PROXY_URL=http://172.17.0.1:7890
+      # - PROXY_URL=http://host.containers.internal:7890
+      - HTTP_PROXY="http://host.docker.internal:7890"
+      - HTTPS_PROXY="http://host.docker.internal:7890"
+      - NO_PROXY="localhost,127.0.0.1,.mydomain.com"
+      - BASE_URL=https://api.openai.com/
+

@@ -1,0 +1,25 @@
+# =========================================================
+# 启动: podman-compose up -d
+# 重启: podman-compose restart    # 在不指定name的时候才能使用!
+# 停止: podman-compose down
+# 访问: http://127.0.0.1:9002
+
+version: '3'
+services:
+  chatgpt-next-web:
+    container_name: chatgpt-next-web
+    image: yidadaa/chatgpt-next-web
+    ports:
+      - "9302:3000"
+    # network_mode: host
+    environment:
+      # 服务的密码
+      - CODE=o-ever-youthful
+      # OpenAI的API Key
+      - OPENAI_API_KEY=sk-proj-LiZwIgiMzryq4OzsmcYtT3BlbkFJoCl2rUUR7TWbGc8SPNzu
+      - BASE_URL=https://api.openai.com/
+      # NOTE: 为了让容器内的应用能够访问到宿主机的网络，需要设置代理
+      - HTTP_PROXY="http://host.docker.internal:7890"
+      - HTTPS_PROXY="http://host.docker.internal:7890"
+      - NO_PROXY="localhost,127.0.0.1,.mydomain.com"
+

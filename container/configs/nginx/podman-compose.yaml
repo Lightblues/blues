@@ -1,19 +1,14 @@
 # version: '3'
-# services:
-#   nginx:
-#     image: nginx:latest
-#     ports:
-#       - "9801:80"
-#     volumes:
 #       - ./data/nginx/data/html:/usr/share/nginx/html:Z
 #       - ./data/minio/data:/mnt/minio/data:Z
 #     restart: unless-stopped
-#     name: nginx
+#     
 
 version: '3'
 services:
   web:
     image: nginx
+    # name: nginx
     volumes:
       - ../../mnt/nginx/templates:/etc/nginx/templates
       - ../../mnt/nginx/config:/etc/nginx/conf.d
