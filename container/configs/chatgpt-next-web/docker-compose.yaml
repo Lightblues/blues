@@ -2,7 +2,7 @@
 # 启动: docker-compose up -d
 # 重启: docker-compose restart    # 在不指定name的时候才能使用!
 # 停止: docker-compose down
-# 访问: http://127.0.0.1:9302
+# 访问: http://127.0.0.1:${CHATGPT_NEXT_WEB_PORT}
 # see https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web/blob/main/docker-compose.yml
 
 
@@ -12,23 +12,24 @@ services:
     container_name: chatgpt-next-web
     image: yidadaa/chatgpt-next-web
     ports:
-      - "9302:3000"
+      - "${CHATGPT_NEXT_WEB_PORT}:3000"
     # network_mode: host
     environment:
       # https://platform.openai.com/api-keys | NextWeb
+      # OpenAI的API Key
       - OPENAI_API_KEY=${OPENAI_API_KEY_1}
-      - CODE=o-ever-youthful
-      # - PROXY_URL=http://localhost:7890
-      # - PROXY_URL=http://host.docker.internal:7890
-      # - PROXY_URL=http://10.89.4.1:7890
-      # - PROXY_URL=http://172.17.0.1:7890
-      # - PROXY_URL=http://host.containers.internal:7890
-      - HTTP_PROXY="http://host.docker.internal:7890"
-      - HTTPS_PROXY="http://host.docker.internal:7890"
+      - BASE_URL=${OPENAI_BASE_URL}
+      # 服务的密码
+      - CODE=${CHATGPT_NEXT_WEB_CODE}
+      # NOTE: 为了让容器内的应用能够访问到宿主机的网络，需要设置代理
+      # 1. 用host上的代理
+      # - HTTP_PROXY="http://host.docker.internal:7890"
+      # - HTTPS_PROXY="http://host.docker.internal:7890"
+      # 2. 用docker其clash
+      - HTTP_PROXY="http://clash:{CLASH_PORT}"
+      - HTTPS_PROXY="http://clash:{CLASH_PORT}"
       - NO_PROXY="localhost,127.0.0.1,.mydomain.com"
-      - BASE_URL=https://api.openai.com/
 
-    # 自定义一个网络!! 
     networks:
       - shared_network
 networks:

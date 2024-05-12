@@ -2,7 +2,6 @@
 # 启动: docker-compose up -d
 # 重启: docker-compose restart    # 在不指定name的时候才能使用!
 # 停止: docker-compose down
-# 访问: http://127.0.0.1:9302
 # see https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web/blob/main/docker-compose.yml
 
 version: '3'

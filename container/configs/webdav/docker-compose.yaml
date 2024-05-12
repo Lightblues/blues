@@ -5,7 +5,7 @@ services:
     image: bytemark/webdav
     restart: always
     ports:
-      - "9305:80"
+      - "${WEBDAV_PORT}:80"
     environment:
       AUTH_TYPE: Basic    # Basic or Digest
       USERNAME: ${WEBDAV_USERNAME}

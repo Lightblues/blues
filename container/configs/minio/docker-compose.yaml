@@ -2,7 +2,7 @@
 # 启动: docker-compose up -d
 # 重启: docker-compose restart    # 在不指定name的时候才能使用!
 # 停止: docker-compose down
-# 访问: http://127.0.0.1:9001/buckets
+# 访问: http://127.0.0.1:${MINIO_WEB_PORT}/buckets
 
 version: '3'
 services:
@@ -11,8 +11,8 @@ services:
     image: quay.io/minio/minio
     # name: minio
     ports:
-      - "9303:9000"
-      - "9304:9001"
+      - "${MINIO_SERVER_PORT}:9000"
+      - "${MINIO_WEB_PORT}:9001"
     volumes:
       - ../../mnt/minio/data:/data
     environment:
@@ -21,7 +21,6 @@ services:
     restart: unless-stopped
     command: server /data --console-address ":9001"
 
-    # 自定义一个网络!! 
     networks:
       - shared_network
 networks:
