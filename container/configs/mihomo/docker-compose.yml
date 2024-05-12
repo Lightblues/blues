@@ -1,16 +1,17 @@
-# https://weibo.com/ttarticle/p/show?id=2309404876225410630195#_loginLayer_1715485490926
-# docker: https://hub.docker.com/r/dreamacro/clash
-# 配置项: https://clash.wiki/configuration/configuration-reference.html
+# GitHub: https://github.com/MetaCubeX/mihomo [12k]
+# docker: https://hub.docker.com/r/metacubex/mihomo/tags
+# 参考: https://github.com/Izumiko/docker-mihomo
 
 version: "3"
 
 services:
   # Clash
   clash:
-    image: dreamacro/clash
-    container_name: clash
+    image: mihomo
+    container_name: mihomo
     volumes:
-      - ../../mnt/clash/config:/root/.config/clash
+      # - ../../mnt/clash/config:/root/.config/clash
+      - ../../mnt/mihomo/config:/root/.config/mihomo
     ports:
       - ${CLASH_PORT}:7890/tcp
       - ${CLASH_PORT}:7890/udp
@@ -29,7 +30,11 @@ services:
     networks:
       - shared_network
 
-# Networks
+# # Networks
+# networks:
+#   shared_network:
+#     driver: bridge
+#     name: clash
 networks:
   shared_network:
     external: true
