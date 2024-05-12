@@ -1,0 +1,63 @@
+# 一个比较精简的教程 ⭐️: https://blog.csdn.net/weixin_42274846/article/details/127952296
+# === Grafana ===
+# web: https://grafana.com
+# 可视化配置
+#   https://grafana.com/grafana/dashboards/1860-node-exporter-full/
+
+
+version: "3.8"
+services:
+
+# docker run -d -p 9100:9100 \
+#   -v "/proc:/host/proc:ro" \
+#   -v "/sys:/host/sys:ro" \
+#   -v "/:/rootfs:ro" \
+#   prom/node-exporter
+  node-exporter:
+    image: prom/node-exporter
+    container_name: node-exporter
+    restart: unless-stopped
+    ports:
+      - '${NODE_EXPORTER_PORT}:9100'
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    networks:
+      - shared_network
+
+# https://hub.docker.com/r/prom/prometheus
+# docker run --name prometheus -d -p 127.0.0.1:9090:9090 prom/prometheus
+# /Users/qiao/opt/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml  \
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    restart: unless-stopped
+    ports:
+      - '${PROMETHEUS_PORT}:9090'
+    volumes:
+      - ../../mnt/prometheus/data:/prometheus
+      - ../../mnt/prometheus/config/prometheus.yml:/etc/prometheus/prometheus.yml
+    # command:
+    #   - '--config.file=/etc/prometheus/prometheus.yml'
+    # networks:
+    #   - prometheusprometheus.yml
+    networks:
+      - shared_network
+
+  grafana:
+    image: grafana/grafana-enterprise
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+     - '${GRAFANA_PORT}:3000'
+    volumes:
+      - ../../mnt/grafana/data:/var/lib/grafana
+      # - ../../mnt/grafana/config/grafana.ini:/etc/grafana/grafana.ini
+      # - ../../mnt/grafana/config/ldap.toml:/etc/grafana/ldap.toml
+      - ../../mnt/grafana/config:/etc/grafana
+    networks:
+      - shared_network
+networks:
+  shared_network:
+    external: true

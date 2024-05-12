@@ -40,3 +40,6 @@
 - debug
     - 中文有问题的话: https://blog.csdn.net/u011459717/article/details/128758573
 
+### grafana
+- doc: https://grafana.com/docs/grafana/latest/setup-grafana/installation/docker/
+- github: https://github.com/grafana/grafana?tab=readme-ov-file
