@@ -1,0 +1,21 @@
+version: '3'
+services:
+  webdav:
+    container_name: webdav
+    image: bytemark/webdav
+    restart: always
+    ports:
+      - "9305:80"
+    environment:
+      AUTH_TYPE: Basic    # Basic or Digest
+      USERNAME: ${WEBDAV_USERNAME}
+      PASSWORD: ${WEBDAV_PASSWORD}
+    volumes:
+      - ../../mnt/webdav/dav:/var/lib/dav
+
+    # 自定义一个网络!! 
+    networks:
+      - shared_network
+networks:
+  shared_network:
+    external: true

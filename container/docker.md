@@ -17,7 +17,10 @@
 
 
 ## nginx
+- 配置文档: https://www.runoob.com/w3cnote/nginx-setup-intro.html
 
+### hexo
+直接映射路径, 配置即可! 
 
 
 ## 所运行的容器
@@ -26,12 +29,14 @@
 - github: https://github.com/minio/minio
 - doc: https://min.io/docs/minio/container/index.html
 
-如何用nginx代理图片? https://www.naeco.top/2020/08/11/private-oss-for-image/ 之类介绍的好像不行
-另见 https://juejin.cn/post/7260786849131003962
-
-### nginx? 
-
 
 ### chatgpt-next-web
 - github: https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web
+- debug
+    - webdav 同步好像有点问题: https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web/issues/3423
+
+### webdav
+- 用的是 https://hub.docker.com/r/bytemark/webdav/ https://github.com/BytemarkHosting/docker-webdav/ 不过已经5年没更新了
+- debug
+    - 中文有问题的话: https://blog.csdn.net/u011459717/article/details/128758573
 

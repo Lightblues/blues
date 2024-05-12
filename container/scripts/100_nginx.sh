@@ -26,3 +26,11 @@ brew services restart nginx
 nginx -s reload
 
 brew services stop nginx
+
+
+sudo apt-get update
+sudo apt-get install certbot python3-certbot-nginx
+
+# sudo certbot --nginx -d yourdomain.com -d www.yourdomain.com
+
+sudo certbot certonly --webroot -w /work/blues/container/mnt/nginx/config -d easonsi.site -d blog.easonsi.site

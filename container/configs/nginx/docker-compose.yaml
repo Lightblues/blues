@@ -5,11 +5,6 @@
 # 访问: http://127.0.0.1:9302
 # see https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web/blob/main/docker-compose.yml
 
-#  -v /usr/local/docker/nginx/html:/usr/share/nginx/html \
-#  -v /usr/local/docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf \
-#  -v /usr/local/docker/nginx/conf/conf.d:/etc/nginx/conf.d \
-#  -v /usr/local/docker/nginx/logs:/var/log/nginx \
-
 version: '3'
 services:
   nginx:
@@ -17,12 +12,20 @@ services:
     image: nginx
     volumes:
       - ../../mnt/nginx/data/html:/usr/share/nginx/html
+      - ../../mnt/hexo/data/public:/usr/share/nginx/hexo
       - ../../mnt/nginx/config/nginx.conf:/etc/nginx/nginx.conf
       - ../../mnt/nginx/config/conf.d:/etc/nginx/conf.d
-      - ../../mnt/nginx/config/sites-available:/etc/nginx/sites-available
+      - ../../mnt/nginx/config/sites-enabled:/etc/nginx/sites-enabled
       - ../../mnt/nginx/logs:/var/log/nginx
     ports:
-      - "9301:80"
-    environment:
-      - NGINX_HOST=foobar.com
-      - NGINX_PORT=80
+      - "80:80"
+    # environment:
+    #   - NGINX_HOST=foobar.com
+    #   - NGINX_PORT=80
+    
+    # 自定义一个网络!! 
+    networks:
+      - shared_network
+networks:
+  shared_network:
+    external: true

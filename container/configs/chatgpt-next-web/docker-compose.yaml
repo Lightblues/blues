@@ -28,3 +28,9 @@ services:
       - NO_PROXY="localhost,127.0.0.1,.mydomain.com"
       - BASE_URL=https://api.openai.com/
 
+    # 自定义一个网络!! 
+    networks:
+      - shared_network
+networks:
+  shared_network:
+    external: true
