@@ -12,6 +12,7 @@ services:
     # profiles: [ "proxy" ]
     container_name: chatgpt-next-web
     image: yidadaa/chatgpt-next-web
+    restart: unless-stopped
     ports:
       - "${CHATGPT_NEXT_WEB_PORT}:3000"
     # network_mode: host

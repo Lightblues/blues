@@ -26,12 +26,18 @@ scrape_configs:
     # scheme defaults to 'http'.
 
     static_configs:
-      - targets: ["localhost:9090"]
+      - targets: ["localhost:9090",'cadvisor:8080','node-exporter:9100']
         labels:
           instance: prometheus
  
+  # === node-exporter ===
   - job_name: linux
     static_configs:
       - targets: ['node-exporter:9100']
         labels:
           instance: linux
+  # === cadvisor ===
+  - job_name: 'cadvisor'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['cadvisor:8080']
