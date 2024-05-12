@@ -1,3 +1,5 @@
+# from https://cloud.tencent.com/developer/article/2187049
+
 # 创建虚拟内存文件
 dd if=/dev/zero of=/mnt/swap bs=1M count=4096   # 创建一个4G（1M*4096）大小的块文件。
 chmod 0600 /mnt/swap
