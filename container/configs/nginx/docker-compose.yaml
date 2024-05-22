@@ -19,6 +19,7 @@ services:
       - ../../mnt/nginx/logs:/var/log/nginx
     ports:
       - "80:80"
+      - "9321:9321"
     # environment:
     #   - NGINX_HOST=foobar.com
     #   - NGINX_PORT=80

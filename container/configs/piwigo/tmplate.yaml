@@ -1,0 +1,22 @@
+# from https://github.com/xmanyou/piwigo-docker/blob/master/docker-compose.yml
+# 后面修改了正式一些路径映射
+
+version: "3"
+services:
+  db:
+    image: mysql:5
+    container_name: piwigo-db
+    network_mode: bridge
+    environment:
+      MYSQL_USER: "piwigo"
+      MYSQL_PASSWORD: "piwigo"
+      MYSQL_DATABASE: "piwigo"
+      MYSQL_RANDOM_ROOT_PASSWORD: "true"
+  piwigo:
+    image: linuxserver/piwigo
+    container_name: piwigo
+    network_mode: bridge
+    ports:
+      - 9331:80
+    links:
+      - db

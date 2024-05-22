@@ -5,6 +5,7 @@
 #   Node Exporter Full: https://grafana.com/grafana/dashboards/1860-node-exporter-full/
 #   Docker and system monitoring: https://grafana.com/grafana/dashboards/893-main/
 #   Docker and OS metrics ( cadvisor, node_exporter ): https://grafana.com/grafana/dashboards/10566-docker-and-os-metrics/
+#   https://grafana.com/grafana/dashboards/14900-nginx/: https://grafana.com/grafana/dashboards/14900-nginx/
 
 
 version: "3.8"
