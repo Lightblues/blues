@@ -1,0 +1,21 @@
+# https://hub.docker.com/r/linuxserver/mysql
+version: '3.8'
+
+services:
+  mysql:
+    image: linuxserver/mysql
+    container_name: mysql
+    ports:
+      - "${MYSQL_PORT}:3306"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - ../../mnt/mysql/config:/config
+    networks:
+      - shared_network
+
+networks:
+  shared_network:
+    external: true

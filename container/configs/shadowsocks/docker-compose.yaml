@@ -1,0 +1,21 @@
+version: "3"
+services:
+  shadowsocks:
+    # image: hadowsocks-server:latest
+    image: shadowsocks/shadowsocks-libev
+    container_name: shadowsocks
+    # image: winterssy/shadowsocksr:latest
+    # container_name: ssr
+    restart: unless-stopped
+    ports:
+      - "${SS_PORT}:8388"
+    # environment:
+    #   - SS_PASSWORD=${SS_PASSWORD}
+    #   - SS_METHOD=${SS_METHOD}
+    networks:
+      - shared_network
+
+# Networks
+networks:
+  shared_network:
+    external: true

@@ -1,8 +1,12 @@
 # =========================================================
+# == 目前换成了系统级别的 nginx, 不过应该可以替换成 docker
 # 启动: docker-compose up -d
 # 重启: docker-compose restart    # 在不指定name的时候才能使用!
 # 停止: docker-compose down
 # see https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web/blob/main/docker-compose.yml
+
+# docker-compose run --rm certbot certonly --nginx --nginx-server-root /etc/nginx --email oldcitystal@gmail.com --agree-tos --no-eff-email -d easonsi.site -d www.easonsi.site
+
 
 version: '3'
 services:
@@ -17,15 +21,43 @@ services:
       - ../../mnt/nginx/config/conf.d:/etc/nginx/conf.d
       - ../../mnt/nginx/config/sites-enabled:/etc/nginx/sites-enabled
       - ../../mnt/nginx/logs:/var/log/nginx
+      # - ../../mnt/letsencrypt/etc:/etc/letsencrypt  # Let's Encrypt
+      - ../../mnt/certbot/etc:/etc/letsencrypt  # Persistent storage for certificates (optional)
     ports:
       - "80:80"
+      - "443:443"
       - "9321:9321"
     # environment:
     #   - NGINX_HOST=foobar.com
     #   - NGINX_PORT=80
-    
     networks:
       - shared_network
+
+  # certbot:
+  #   image: certbot/certbot
+  #   container_name: certbot
+  #   volumes:
+  #     - ../../mnt/nginx/config:/etc/nginx
+  #     - ../../mnt/nginx/config/sites-enabled:/etc/nginx/sites-enabled
+  #     - ../../mnt/letsencrypt/etc:/etc/letsencrypt
+  #     - ../../mnt/letsencrypt/lib:/var/lib/letsencrypt
+  #     - ../../mnt/letsencrypt/log:/var/log/letsencrypt
+  #   entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+  #   depends_on:
+  #     - nginx
+  #   networks:
+  #     - shared_network
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - ../../mnt/certbot/etc:/etc/letsencrypt  # Persistent storage for certificates (optional)
+      - ../../mnt/certbot/conf:/etc/letsencrypt/renewal  # Configuration for automatic renewal (optional)
+      - ../../mnt/certbot/data:/var/www/certbot
+    command: ["certonly"]
+    networks:
+      - shared_network
+
 networks:
   shared_network:
     external: true

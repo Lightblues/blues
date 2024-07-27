@@ -9,6 +9,10 @@
 sudo apt install nginx
 # check config
 nginx -t
+
+# ln /etc/nginx/ -> ./nginx
+ln -s /etc/nginx ./nginx
+
 # restart
 sudo systemctl restart nginx
 sudo systemctl reload nginx

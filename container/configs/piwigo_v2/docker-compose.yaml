@@ -1,0 +1,45 @@
+# https://hub.docker.com/r/linuxserver/piwigo
+
+version: "3"
+services:
+  # 下面这个尝试把mysql混在一起写, 之前报了个错误, 直接删掉mysql重新搞了一下! 
+  # piwigo_v2_db:
+  #   # image: mariadb:latest
+  #   image: mysql:5
+  #   container_name: piwigo_v2_db
+  #   restart: unless-stopped
+  #   volumes:
+  #     - ../../mnt/piwigo_v2/db:/var/lib/mysql
+  #   environment:
+  #     MYSQL_DATABASE: ${PIWIGO_DB_NAME}
+  #     MYSQL_USER: ${PIWIGO_DB_USER}
+  #     MYSQL_PASSWORD: ${PIWIGO_DB_PASSWORD}
+  #     MYSQL_RANDOM_ROOT_PASSWORD: "true"
+  #     MYSQL_ROOT_HOST: "%"
+  #   networks:
+  #     - piwigo-db
+
+  piwigo:
+    image: lscr.io/linuxserver/piwigo:latest
+    container_name: piwigo_v2
+    # depends_on:
+    #   - piwigo_v2_db
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      # 好像也可以在这里用环境变量配置 mysql 数据库? 手动输入也不错子! 
+    volumes:
+      - ../../mnt/piwigo_v2/piwigo/config:/config
+      - ../../mnt/piwigo_v2/appdata/gallery:/gallery
+    ports:
+      - 9333:80
+    restart: unless-stopped
+    networks:
+      - shared_network
+
+networks:
+  # piwigo-db:
+  #   driver: bridge
+  shared_network:
+    external: true

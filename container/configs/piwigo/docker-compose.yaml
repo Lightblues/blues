@@ -1,3 +1,5 @@
+# 已废弃! 见 piwigo_v2!
+
 version: "3"
 services:
   db:
@@ -6,7 +8,6 @@ services:
     # command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     image: mysql:5
     container_name: piwigo-db
-    # restart: always
     restart: unless-stopped
     volumes:
       - ../../mnt/piwigo/db:/var/lib/mysql
@@ -15,14 +16,15 @@ services:
       MYSQL_USER: ${PIWIGO_DB_USER}
       MYSQL_PASSWORD: ${PIWIGO_DB_PASSWORD}
       MYSQL_RANDOM_ROOT_PASSWORD: "true"
+      MYSQL_ROOT_HOST: "%"
       # MYSQL_ROOT_PASSWORD: ${PIWIGO_DB_PASSWORD}
     networks:
+      - piwigo-net
       - shared_network
 
   piwigo:
     image: linuxserver/piwigo
     container_name: piwigo
-    # restart: always
     restart: unless-stopped
     ports:
       - "${PIWIGO_PORT}:80"
@@ -30,19 +32,20 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Shanghai
-      # - MYSQL_HOST=db     # NOTE: 好像没啥用! 
-      # - MYSQL_USER=${PIWIGO_DB_USER}
-      # - MYSQL_PASSWORD=${PIWIGO_DB_PASSWORD}
-      # - MYSQL_DATABASE=${PIWIGO_DB_NAME}
+      - MYSQL_HOST=db
+      - MYSQL_USER=${PIWIGO_DB_USER}
+      - MYSQL_PASSWORD=${PIWIGO_DB_PASSWORD}
+      - MYSQL_DATABASE=${PIWIGO_DB_NAME}
     depends_on:
       - db
     volumes:
       - ../../mnt/piwigo/config:/config
       - ../../mnt/piwigo/gallery:/gallery
     networks:
+      - piwigo-net
       - shared_network
 
-# Networks
 networks:
+  piwigo-net:
   shared_network:
     external: true
