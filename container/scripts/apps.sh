@@ -36,11 +36,13 @@ podman run -d -p 9301:3000 \
 # clash
 # https://github.com/juewuy/ShellCrash
 # 执行安装命令
-export url='https://fastly.jsdelivr.net/gh/juewuy/ShellCrash@master' && sh -c "$(curl -kfsSl $url/install.sh)" && source /etc/profile &> /dev/null
-crash       # 配置! 
+export url='https://fastly.jsdelivr.net/gh/juewuy/ShellCrash@master' && wget -q --no-check-certificate -O /tmp/install.sh $url/install.sh  && bash /tmp/install.sh && source /etc/profile &> /dev/null
+# export url='https://fastly.jsdelivr.net/gh/juewuy/ShellCrash@master' && sh -c "$(curl -kfsSl $url/install.sh)" && source /etc/profile &> /dev/null
+crash       # 配置! 但好像有点问题? 可以尝试下面的! 
+cd /etc/ShellCrash && bash menu.sh
 
 
-# proxyip=localhost
+# proxyip=localhost  | http://lulu:lulu@easonsi.site:9366
 proxyip=127.0.0.1
 proxyport=7890
 alias setproxy="export https_proxy=http://$proxyip:$proxyport; export http_proxy=http://$proxyip:$proxyport; export all_proxy=http://$proxyip:$proxyport; echo \"Set proxy $proxyip:$proxyport\" "
