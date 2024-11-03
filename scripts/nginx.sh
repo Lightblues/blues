@@ -33,4 +33,4 @@ sudo certbot --nginx -d webdav.easonsi.site
 sudo certbot --nginx -d piwigo.easonsi.site
 sudo certbot --nginx -d notes.easonsi.site -d technotes.easonsi.site
 
-
+sudo certbot --nginx -d substack.easonsi.site
