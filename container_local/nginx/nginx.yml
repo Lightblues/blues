@@ -1,0 +1,32 @@
+# https://hub.docker.com/_/nginx
+# from [Docker Compose 安装 Nginx](https://juejin.cn/post/7010659673791528991)
+# 需要将这些配置文件从默认的 Docker中复制过来.
+version: '3'
+services:
+  nginx:
+    container_name: nginx
+    image: nginx
+    restart: always
+    ports:
+      - 80:80
+    privileged: true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./conf/log/:/var/log/nginx
+      # 注意：如下挂载都是覆盖
+      - ./conf/conf.d:/etc/nginx/conf.d
+      - ./conf/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./conf/html:/usr/share/nginx/html
+
+# nginx:
+#   images: nginx:latest
+#   restart: always
+#   container_name: nginx
+#   hostname: 'nginx'
+#   ports:
+#     - 80:80
+#   volumes:
+#     - /mnt/nginx/nginx.conf:/etc/nginx/nginx.conf
+#     - /mnt/nginx/logs:/var/log/nginx
+#     - /mnt/nginx/html:/usr/share/nginx/html
+#     - /mnt/nginx/conf:/etc/nginx/conf.d

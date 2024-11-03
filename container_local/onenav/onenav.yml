@@ -1,0 +1,17 @@
+# https://github.com/helloxz/onenav
+---
+version: "0.9"
+services:
+  onenav:
+    image: helloz/onenav:latest
+    container_name: onenav
+    environment:
+      # - PUID=1000
+      # - PGID=1000
+      - TZ Asia/Shanghai
+    volumes:
+      # - /home/lighthouse/data/onenav:/data/wwwroot/default/data
+      - /home/syc/docker/onenav/data:/data/wwwroot/default/data
+    ports:
+      - 8080:80
+    restart: unless-stopped
