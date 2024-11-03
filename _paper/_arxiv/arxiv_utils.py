@@ -20,6 +20,7 @@ def search_arxiv(
     max_results=10,
     sort_by: arxiv.SortCriterion = arxiv.SortCriterion.SubmittedDate,
 ) -> list[arxiv.Result]:
+    print(f"  -> query `{query}` with sort_by={sort_by}")
     return list(
         client.results(
             arxiv.Search(

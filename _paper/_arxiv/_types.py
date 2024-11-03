@@ -1,7 +1,8 @@
-import re
+import re, yaml
 from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from enum import Enum
+from typing import Optional, Dict, Any, List
 
 
 class Focus(str, Enum):
@@ -11,6 +12,29 @@ class Focus(str, Enum):
     Safety = "Safety"
     Other = "Other"
 
+@dataclass
+class Config:
+    notion_token: str = None
+    notion_database_id: str = None
+    openai_token: str = None
+
+    search_arxiv: bool = True
+    search_semantic_scholar: bool = False
+    link_kimi: bool = True
+    
+    arxiv_max_results: int = 10
+    arxiv_search_queries: Dict[str, Any] = field(default_factory=dict)
+    user_keywords: List[str] = field(default_factory=list)
+    
+    @classmethod
+    def from_yaml(cls, path: str):
+        with open(path, 'r') as f:
+            config = yaml.load(f, Loader=yaml.FullLoader)
+            return cls(**config)
+        
+    def to_dict(self):
+        return asdict(self)
+    
 
 @dataclass
 class Paper:
@@ -22,6 +46,7 @@ class Paper:
     url: str | None = None
     focus: Focus | None = None
     summary: str | None = None
+    kimi: str | None = None
     abstract: str | None = None
     authors: list[str] = field(default_factory=list)
     published: datetime | None = None

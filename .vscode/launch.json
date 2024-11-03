@@ -10,8 +10,12 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "justMyCode": true,
+            "justMyCode": false,
             "cwd": "${fileDirname}",
+            "env": {
+                // /Users/frankshi/Library/Mobile Documents/com~apple~CloudDocs/_Projects_my/blues/_ref/notion-py
+                "PYTHONPATH": "${workspaceFolder}/_ref/notion-py:${PYTHONPATH}"
+            }
         }
     ]
 }

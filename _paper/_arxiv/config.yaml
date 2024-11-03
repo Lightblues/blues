@@ -1,0 +1,15 @@
+
+notion_token: 
+notion_database_id: 
+openai_token: 
+
+search_arxiv: true # search Arxiv
+search_semantic_scholar: false # search Semantic Scholar
+link_kimi: true # if link to https://papers.cool/arxiv
+
+arxiv_max_results: 10
+arxiv_search_queries: 
+  agent: "LLM agent"
+
+user_keywords: 
+  - LLM-agent
