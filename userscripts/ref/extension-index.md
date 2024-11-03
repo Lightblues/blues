@@ -1,0 +1,5 @@
+- Google出的教程
+    - [hello-world](tools/chrome-extensions-samples/functional-samples/tutorial.hello-world/manifest.json) 基础的文件结构, 在DevTools中打印输出.
+    - [quick-api-reference](tools/chrome-extensions-samples/functional-samples/tutorial.quick-api-reference/manifest.json) 介绍了 Service Worker
+- 更为灵活的方案是采用 react进行开发, 参见 [Build a Chrome Extension in Next.js and Notion API](https://birdeatsbug.com/blog/build-a-chrome-extension-in-next-js-and-notion-api); [GitHub](https://github.com/ravgeetdhillon/notion-bookmarks)
+- 一开始可以用非插件形式学习, 见 [用Notion API和Next.js创建联系表单](https://juejin.cn/post/7067101831045840904)
